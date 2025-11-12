@@ -1,541 +1,361 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">																																		<!-- ricorda di salvare come .html in nome file, poi puoi aprire file. Se fai omdifiche a questo file e salvi, se fai refresh pagina web compaiono modifiche -->
-<html>																																						
+<!doctype html>
+<html lang="it">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-<title>Il sito personale di Claudio Menichini</title>  																														<!-- qui metto titolo (head) -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Claudio Menichini — Pagina personale</title>
+  <style>
+    :root{
+      --bg-image: url('sfondo1.jpg'); 
+      --accent: #1B3A4B;
+      --card-bg: #ffffff;
+      --text: #111;
+      --radius: 14px;
+      --max-width: 1100px;
+      --gap: 18px;
+      --fade-time: 600ms;
+      --petrol: #07575b; /* verde petrolio */
+    }
+    *{box-sizing:border-box}
 
-<meta name="viewport" content="width=1200px, maximum-scale=1.0" />                                            <!-- se hai dubbio togli -->
+    html, body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+    }
 
-<style type="text/css"> 
+    body{
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 32px 16px;
 
-.np-logo
-{
-background-repeat: no-repeat;
-background-size: 100%;
-}
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; 
+      min-height: 100vh;       
+    }
+    .site{
+      width:100%;max-width:var(--max-width);backdrop-filter: blur(6px); /* sfumatura */
+    }
 
-button { border-radius: 10px 10px 10px 10px; }
-input { border-radius: 10px 10px 10px 10px; }
-td { border-radius: 10px 10px 10px 10px; } 
-img { border-radius: 10px 10px 10px 10px; }
-iframe { border-radius: 10px 10px 10px 10px; }
-div { border-radius: 10px 10px 10px 10px; }
+    header{
+      color:white;
+      padding:28px 18px;
+      text-align:left;
+    }
+    header h1{margin:0;font-size:2.1rem;letter-spacing:0.6px}
 
-body {  
-  background-repeat: repeat-x;		
-}
+    .main{
+      display:flex;flex-direction:column;gap:var(--gap);
+      align-items:stretch;padding:8px;
+    }
 
-.button1 { padding: 0px 0px 52px 0px; }
+    /* due colonne affiancate su desktop */
+    @media(min-width:900px){
+      .main{flex-direction:row;align-items:flex-start}
+      .left{flex:1;margin-right:20px}
+      .right{width:380px;flex:0 0 380px}
+    }
 
-.ClaudioAnimazione {
-  
-  background-color: red;
-  animation: 
-    pulse 3s ease infinite alternate, 
-    nudge 5s linear infinite alternate;
-  border-radius: 100%;
-}
+    .card{
+      background: var(--card-bg);
+      border-radius:var(--radius);
+      padding:14px 18px;
+      box-shadow:0 6px 18px rgba(16,24,40,0.06);
+    }
+    .field{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;margin-bottom:10px;}
+    .label{min-width:140px;font-weight:600;color:var(--accent)}
+    .emoji{font-size:1.25rem;line-height:1}
+    .value{flex:1;color:#000;}
 
-@keyframes pulse {
-  0%, 100% {
-    background-color: red;
-  }
-  50% {
-    background-color: orange;
-  }
-}
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 22px; 
+    }
 
-@keyframes nudge {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  
-  50% {
-    transform: translate(20px, 0);
-  }
-  
-  80% {
-    transform: translate(-20px, 0);
-  }
-}
+    /* photo frame */
+    .profile-photo{width:240px;max-width:100%;height:auto;border-radius:12px;object-fit:cover;display:block}
+    .photo-frame{display:inline-block;line-height:0;margin-bottom:8px;position:relative;overflow:hidden}
+    /* bordo interno */
+    .photo-frame::after{content:"";position:absolute;left:12px;top:12px;right:12px;bottom:12px;border-radius:8px;border:2px solid var(--petrol);pointer-events:none}
+    .photo-frame img{display:block;border-radius:12px;width:100%;height:auto}
 
+    /* immagini da wikimedia */
+    .photo-wrap{display:flex;flex-direction:column;gap:6px;align-items:center}
+    .socials{display:flex;gap:12px;margin-top:10px;justify-content:center}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;text-decoration:none;overflow:hidden}
+    .socials img{width:100%;height:100%;object-fit:contain;display:block}
 
+    /* metto il logo di github chiaro sennò non si vede */
+    .socials a.github img {
+      filter: invert(1) grayscale(1) contrast(1);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-.neonText {
- 
-  text-shadow:
-    0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff,
-    0 0 42px #0fa,
-    0 0 82px #0fa,
-    0 0 92px #0fa,
-    0 0 102px #0fa,
-    0 0 151px #0fa;
-}
+    /* ingrandisce su desktop */
+    @media(min-width:900px){
+      .socials a{width:52px;height:52px;border-radius:12px}
+    }
 
-.googleText {
- 
- text-shadow:
-   0 0 7px black,
-   0 0 10px aqua,
-   0 0 21px aquamarine,
-   0 0 42px aquamarine,
-   0 0 82px aquamarine,
-   0 0 92px aquamarine,
-   0 0 102px green,
-   0 0 151px green;
-}
+    .media-list{display:flex;flex-direction:column;gap:12px}
+    .media-item{border-radius:10px;overflow:hidden}
+    .media-item img,.media-item iframe{width:100%;height:220px;display:block}
 
-.discos{
-  
-  
-  
-  -webkit-transform: rotateX(25deg) rotateY(20deg) rotateZ(-3deg); 
-  transform: rotateX(25deg) rotateY(20deg) rotateZ(-3deg);  
-  
+    /* Fade */
+    .fade-in{opacity:0;transform:translateY(6px);animation:fadeIn var(--fade-time) ease forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
 
-  
-  -webkit-animation: anim 3s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count:infinite;
-  
-  animation: anim 10s;
-  animation-timing-function: linear;
-  animation-iteration-count:infinite;
-}
+    /* mobile */
+    @media(max-width:899px){
+      header h1{font-size:1.6rem;text-align:center}
+      .card{width:100%}
+      .label{min-width:0;font-weight:700}
+      .field{flex-direction:row}
+      .profile-photo{border-radius:12px;width:92%}
+      .media-item img,.media-item iframe{height:180px}
+    }
 
-@-webkit-keyframes anim {
-    0%{text-shadow:-6px 4px 0px red;}
-    10% {text-shadow:4px -6px 0px green;}
-    20% {text-shadow:-9px 4px 0px blue;}
-    30% {text-shadow:4px -6px 0px yellow;}
-    40% {text-shadow:-8px 4px 0px orange;}
-    50% {text-shadow:4px 5px 0px purple;}
-    60% {text-shadow:-6px 4px 0px brown;}
-    70% {text-shadow:4px 7px 0px pink;}
-    80% {text-shadow:-9px -4px 0px lime;}
-    90% {text-shadow:4px -6px 0px cyan;}
-    100% {text-shadow:-9px 4px 0px teal;}
-} 
+    .muted{color:#666;font-size:0.95rem}
+    .small{font-size:0.92rem}
+    .spacer{height:6px}
 
-@keyframes anim {
-    0%{text-shadow:-6px 4px 0px red;}
-    10% {text-shadow:4px -6px 0px green;}
-    20% {text-shadow:-9px 4px 0px blue;}
-    30% {text-shadow:4px -6px 0px yellow;}
-    40% {text-shadow:-8px 4px 0px orange;}
-    50% {text-shadow:4px 5px 0px purple;}
-    60% {text-shadow:-6px 4px 0px brown;}
-    70% {text-shadow:4px 7px 0px pink;}
-    80% {text-shadow:-9px -4px 0px lime;}
-    90% {text-shadow:4px -6px 0px cyan;}
-    100% {text-shadow:-9px 4px 0px teal;}
-} 
+    /* liste */
+    .list-vertical{display:flex;flex-direction:column;gap:6px}
+    .list-vertical .item{display:flex;gap:8px;align-items:center}
 
-table {
-border-collapse:collapse
-}
-th {
-border:1px solid #ddd;
-padding:8px;
-}
+    /* strisce diagonali */
+    :root { --stripe-rgb: 20,20,20; } /* nero */
 
-.container {
-	display: flex;
-	flex-direction: column;
-	
-	
-}
+    .site {
+      position: relative;    
+      z-index: 1;           
+      border-radius: var(--radius);
+      overflow: visible;     
+    }
 
-@keyframes vibrate {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(-1deg); }
-  20% { transform: rotate(1deg); }
-  30% { transform: rotate(0deg); }
-  40% { transform: rotate(1deg); }
-  50% { transform: rotate(-1deg); }
-  60% { transform: rotate(0deg); }
-  70% { transform: rotate(-1deg); }
-  80% { transform: rotate(1deg); }
-  90% { transform: rotate(0deg); }
-  100% { transform: rotate(-1deg); }
-}
+    .site::before {
+      content: "";
+      position: absolute;
+      inset: 0;                   
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;                
+      background: repeating-linear-gradient(
+        225deg,                          
+        rgba(var(--stripe-rgb), 0.38) 0px,
+        rgba(var(--stripe-rgb), 0.38) 2px,
+        transparent 2px,
+        transparent 8px                   /* distanza tra righe */
+      );
+    }
 
-.icona:hover {
-  /* Start the vibrate animation with duration 0.5 seconds */
-  animation: vibrate 0.5s;
+    /* sopra il layer */
+    .site > * { position: relative; z-index: 1; }
 
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
+    .card { background: rgba(255,255,255,0.92); }
 
-.moonPulse{
-    animation: pulce 2s infinite;
-    border-radius: 10%;
-    width: 10em;
-}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <h1 id="name" style="color:white">CLAUDIO MENICHINI</h1>
+    </header>
 
-@keyframes pulce{
-      from{
-        box-shadow: 0 0 0 0 rgba(198, 182, 179, 0.85);
-      }
+    <main class="main">
+      <!-- su mobile è primo blocco, su desktop a sinistra -->
+      <section class="left">
 
-      to{
-        box-shadow: 0 0 0 80px rgba(200, 179, 23, 0);
-      }
-  }
+        <!-- prima della 4 card -->
+        <div class="card fade-in" style="animation-delay:0ms">
+          <div class="field">
+            <div class="emoji">🎂</div>
+            <div>
+                <div class="label">Nato a <span class="value"><b>Pisa</b> nel<b> 1994</b></span></div>
+            </div>
+          </div>
 
-  body {
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-  background-size: 100% 100%;  
-  }
-  
+          <div class="field">
+            <div class="emoji">🏠</div>
+            <div>
+                <div class="label">Residenza: <span class="value"><b>Pisa / Calambrone </b>(Toscana)</span></div>
+            </div>
+          </div>
 
-</style>                                                                  <!-- sopra era rgba(201, 48, 48, 0); body sopra è per estendere immagine a tutta pagina-->
+          <div class="field">
+            <div class="emoji">📏</div>
+            <div>
+                <div class="label">Altezza: <span class="value"><b>192 cm</b></span></div>
+            </div>
+          </div>
 
-</head>																																			<!-- sopra stondamenti, iframe sopra stonda youtube. link sono colori dei link cambiano colore quando cliccati. body sopra ripete immagine di sfondo (solo su asse x). per dare proprietà css basta chiamare qualcosa, come img div ecc, con class=... e poi fare "".quel nome" nel css.  -->
-<body background="https://static.vecteezy.com/ti/foto-gratuito/p2/26517666-nebulosa-galassia-sfondo-cosmo-nuvole-e-bellissimo-universo-notte-stelle-generativo-ai-gratuito-foto.jpg" link="navy" alink="red" vlink="green">    																								 <!-- poi c'è body, qui c'è sfondo, dopo si vedono colori, fff è sfondo default giallino. bgcolor=FFFFA0 ad es. per colore unico, sostiuito con background per sfondo. In alternativa a background color, se vogllio immagine: background="sfondo2.jpg. Colore (è blu)scelto per essere simile a img della parte centrale così sembra che sconfini nello sfondo, colore esatto preso cliccando con color picker online su bordo dell'immagine centrale (quella blu e gialla) -->
-<lang='it'
-style='-webkit-hyphens: auto;						
--moz-hyphens: auto;
--ms-hyphens: auto;							
--o-hyphens: auto;							
-hyphens: auto;'>
-																																																								<!-- attento anche spazi di troppo tra parole fanno casino, guarda meticolosamente, ultima risorsa copia/incolla codice se l'hai preso da altra parte. in generale stai attento a non fare body di css sbagliati perché incasini tutto magari anche nella vista dal cellulare che centrava tutto invece di iniziare dalla cima -->
-																																																							<!-- spazi accapo tra le righe non dovrebbero dare noia, solo tra parola e parola nella stessa frase. <> e quello dentro si chiama tag, br è break -->
-<!-- parte in cima -->
-																																																									<!-- NON mettere commenti dentro lang = 'it' o le 4 righe sotto (qui sopra) sennò ti visualizza sito web in modo errato. Messo questo br per fare stacco da blocco con testo e immagini e barra superiore -->
-<div align="center" valign="middle">
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="1200">  																															<!-- tavola di misura della finestra che ti appare, 1024 o come voglio -->	
-<tr>
-<td background="https://cdn.create.vista.com/api/media/medium/461200990/stock-photo-blue-yellow-background-geometric-pattern?token=" valign="top" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="980">
- 
-  <hr style="height:0pt; visibility:hidden;" /> <!--TOGLI O CAMBIA a seconda, è per aggiungere spazio restringibile a piacimento (hidden), cambia height-->
+          <div class="field">
+            <div class="emoji">🗣️</div>
+            <div>
+                <div class="label">Dialetto: <span class="value"><b>Pisano - livornese</b> (nativo)</span></div>
+            </div>
+          </div>
 
-<p style="text-align:center;"><img border="0" src="Claudio Menichini font titolo.jpg" width="800" align="center" hspace="20"> <!--br sopra?-->
-
-																																																											<!-- <div style="box-shadow: 10px 10px 10px #a3a0a1; background:lemonchiffon; -->
-																																																				<!-- border:30px solid wheat;padding:10px;height:122px"> -->	 																																													<!-- larghezza. hr è altro tipo di interruzione dopo br, è riga sottile; resetta allineam. (rimanda tutto sx), va rimesso, fatto sotto. Guarda bene < e >. Inspessimento (altezza) e colore -->
-																																																												<!-- <p style="text-align:center;"><font face="Arial" size="7" color="navy"><b>CLAUDIO MENICHINI <br><font size="6" color="grey">Pagina Personale in progress</b></div>	 -->																	<!-- è testo, font metto arial e la larghezza e colore. Justify è testo a sx, o center, o left. Cambiata dimens con font (guarda sempre come puoi migliorare bellezza con questi accorgimenti su dimensioni)  -->
-<hr size="2" color="#464f80">	
-
-<!-- parte centrale-->
-
-<blockquote>
-
-<p style="text-align:center;"><img border="0" src="claudio menichini sfondo 3.jpg" width="800" align="center"><br>	
-
-<p style="text-align:center;"><img border="0" src="codice ai 1.jpg" width="800" align="center" hspace="20">																																																		<!-- <p align="center"><font color="brown"><b>"Il più bello dei mari è quello che non navigammo"<br><br>																																		<!--se voglio in grassetto, <b>testo</b>; per andare a capo (interruzione) è <br>; per ruotare, style="transform:rotate(45deg); -->
-																																																<!-- <span style="text-transform: uppercase;"><font color="#dc143c">Questa pagina è una prova del<br><br><font color="#ff8c00">linguaggio<font size="7"> HTML <font size="6" color="#008b8b"><br>per pagina web<br><br></span>
-																																																			<font color="darkred">Sfondi - 																																																		<!-- modo per cambiare colore, lo fa di quel colore finché non rispecifico un nuovo colore (come black qui sotto) -->
-																																																			<!-- Cornici -																																																								<!-- anche qui viene viola -->
-																																																			<!-- Immagini -
-																																																			Link -																																																			<!-- blockquote per dare margine di un centimetro fisso da borso del blocco in cui scrivi(rispetto al testo), ne metti 2: rientra di più -->
-																																																			<!-- Ombreggiature -
-																																																			Bordi</b><br><br> -->																																																					<!-- p inoltre spazia un po' (qui sta centrando testo, centra tutto quello sotto) -->
-																																																							<!-- <i> per corsivo -->																																																								
-</td>	
-
-<!-- colonna a destra -->
-
-<td background="https://cdn.create.vista.com/api/media/medium/461200990/stock-photo-blue-yellow-background-geometric-pattern?token=" valign="top" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="220">
-
-																																																									<!-- <td bgcolor="ghostwhite" valign="top" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="220">	-->																															<!-- width era 400 ridotta a 200 per farci stare meglio foto, quindi poi ho modificato 800 in 1000 per restare somma 1200.  -->
-<p align="center"><img border="0" src="claudio 2020[2897].jpg" width="180" align="center" vspace="10">																																			<!-- fotografia è file separato, quindi va in stesso luogo dove c'è questo testo o nel mio provider/hosting/browser. Si può scrivere anche così con px, cornice bianca fatta apposta per fare bordo + carino -->
-  <a href="https://apps.apple.com/it/app/favorite-collections/id1671512128" style="text-decoration: none"><p align="center"><img border="0" src="logo favorite collections.jpg" width="150" align="center" class="moonPulse">	</a></p>																																		                                                                                      <!-- rimanda a file pdf -->
-  <p align="center">
-<a href="https://apps.apple.com/it/app/my-personal-coin-collection/id6443976119" style="text-decoration: none"><img border="0" src="monetaantica.jpg" width="145" align="center" class="ClaudioAnimazione" vspace="10"></a></p>
-
-<p style="text-align:center"><font face="Arial" size="4" color="lemonchiffon">Clicca l'immagine delle collezioni per l'app<b><font color="yellow"> Favorite Collections</font></b> e sulla moneta per <br><b><font color="yellow">My Personal Coin Collection</b><br><br></font> <!--font lo tengo anche x prossima riga-->
-<br>
-<a href="https://github.com/cla1994" style="text-decoration: none"><font color="white"><u>Qui</u> le mie app di <br><b><font color="yellow">Intelligenza Artificiale</b></font><br> in <b><font color="yellow">PYTHON </font></b><br>e altre <b>(GITHUB)</b></a><br></font>																																		<!-- collegamento ipertestuale: se rimando a mio sito non serve http prima, sennò serve. Style serve per togliere rigo sotto da -->
-<br><hr>
-<font color="lemonchiffon" face="Verdana" size="3"><p style="text-align:center;"><a href="CV - CLAUDIO MENICHINI.pdf" style="text-decoration: none"><b><font color="gold" size="5">Curriculum V.</a></b><br></font>			
-<!--   <hr width="100" color="aliceblue">   --> 
-<hr color="#28a0b0" size="3">                                                                                                                                                                                                                                    	<!-- collegamento ipertestuale: se rimando a mio sito non serve http prima, sennò serve. Style serve per togliere rigo sotto da --> <!-- p style meglio di p align-->
-<font color="lemonchiffon" face="Verdana" size="3"><p style="text-align:center;">Profilo<a href="https://www.linkedin.com/in/claudio-menichini-232383253/" style="text-decoration: none"><b><font color="lemonchiffon" size="5"> LinkedIn</a></b><br></font>																																		<!-- collegamento ipertestuale: se rimando a mio sito non serve http prima, sennò serve. Style serve per togliere rigo sotto da -->
-<!--<hr width="100" color="aliceblue"> --> 
-<hr color="#28a0b0" size="3"> 
-<p style="text-align:center;"><a href= "mailto:claudiomenichini94@gmail.com" style="text-decoration: none"><font color="wheat" size="5"><b>E-mail</b></a></font></p>																																																																                                                                                                                    <!-- se foto è da internet scrivi indirizzo con http. hspace margini foto da dx e sx, vspace sono margini da alto e basso-->
-<hr color="#28a0b0" size="3"> 
-</td>	</tr>		</div>																				
-</table>
-
-<hr size="3" color="white" width="1200">
-
-
-<!-- parte sotto con i miei interessi -->
-
-<div align="center" valign="middle"><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="1200">
-<tr>
-<td background="stock-photo-blue-yellow-background-geometric-pattern.jpg" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">
-<p align="center">
-
-  <audio id="audio_play">
-    <source src="claudiomusicabach.mp3" type="audio/mp3"/>                                                                                                                                                                 <!--http://www.piano-midi.de/ogg/haydn/haydn_8_4.ogg-->
-    <source src="claudiomusicabach.aac" type="audio/aac"/> 
-    <source src="claudiomusicabach.ogg" type="audio/ogg"/>              
-                                                                                                                                                      <!--http://www.piano-midi.de/ogg/haydn/haydn_8_4.ogg-->
-  <!-- <source src="http://www.piano-midi.de/ogg/chopin/chpn-p10.ogg" type="audio/ogg"/>        -->                                                                                                                                                           <!--http://www.piano-midi.de/ogg/haydn/haydn_8_4.ogg-->
-  <!--  <source src="https://www.chosic.com/wp-content/uploads/2020/06/Brendan_Kinsella_-_Mozart_-_Piano_Sonata_in_B-flat_major_III_Allegretto_Grazioso.mp3" type="audio/mpeg" />     -->                                                                       <!--http://www.piano-midi.de/mp3/haydn/haydn_8_4.mp3-->
-</audio>
-
-<img border="0" src="https://wips.plug.it/cips/paginegiallecasa/cms/2018/03/piano-3196616_1280.jpg?a=c" width="350" hspace="10" vspace="10" onClick="document.getElementById('audio_play').play(); return false;">																										<!-- collegamenti ipertestuali perché è brutto. Dopo none ti fa apparire testo dove cliccare. <a> è testo chiusura. Spazio è ok. valign top sposta testo in alto, middle in mezzo, e bottom. src sta per search -->
-</td>
-<td bgcolor="lemonchiffon" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">																																							                                                                    <!-- cornice/sfondo che evidenzia in background -->
-<div style="background:#464f80;
-border:25px solid lemonchiffon;padding:15px;height:180px"><font face="Arial" size="5" color="white">																																							                                                                    	<!-- se metti width, altezza generata automaticamente: se vuoi ridurre l'altezza di una riga forse c'è una height (eccessiva) di troppo  -->												
-<p style="text-align:center;"><b>I MIEI INTERESSI</b></font><br><font face="Arial" size="5" color="yellow">
-<ul>
-	<li>Musica: un poco di Bach... clicca sul piano</li>
-	<li>Modellistica e Lego</li>
-	<li>... e la programmazione</li>
-</ul></p></font>
-																																																																					<!-- p style al posto di p align.  -->
-</div></td>																																																																	<!-- /div è chiusura dello sfondo (div style... ecc) -->
-                                  
-<td bgcolor="khaki" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">                  																																											<!-- se non lo metto immagini rispostate a sx da div per background. Sotto allineo foto leopardo a dx. Messo 300 e 900 per incastrare bene img leopardo  -->
-<p align="center"><img border="0" src="immagine lego arancio[3059].jpg" width="300" align="center" hspace="20" vspace="20" class="icona" style="transform:rotate(5deg)">                                                                <!-- ridotto dimensioni dell'immagine con GIMP perché immag su internet devo occupare poco spazio sennò rallentano esecuzione specie su celluòlari (questa immagine era 5 mb, troppo) -->
-</td>
-</tr>  </div>
-</table>
-
-<hr size="3" color="white" width="1200">
-
-<!-- parte con youtube -->
-
-<div align="center" valign="middle"><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="1200"> 																									      	<!-- dimens devono essere uguali (tutte 1200) o somma (400+800 visto sopra, o 1000 e 200) -->
-<tr>			
-  																																														                                                                                                                <!-- tabelle (queste righe tra <tr>), per dividere pagina. td da la suddivisione in verticale della -->
-<td background="stock-photo-blue-yellow-background-geometric-pattern.jpg" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">		                                                              <!-- tabella, tr in orizzonale. FFFFFF bianco (sfondo)(anche ghostwhite), vanno -->
-	<img border="0" src="https://i.pinimg.com/originals/ca/0a/88/ca0a8837db1e1facfa4b35de3771d2b8.jpg" width="150" hspace="10" onClick="document.getElementById('audio_play').play(); return false;">																										<!-- collegamenti ipertestuali perché è brutto. Dopo none ti fa apparire testo dove cliccare. <a> è testo chiusura. Spazio è ok. valign top sposta testo in alto, middle in mezzo, e bottom. src sta per search -->
-  <img border="0" src="https://i.pinimg.com/originals/ca/0a/88/ca0a8837db1e1facfa4b35de3771d2b8.jpg" width="150" hspace="10" onClick="document.getElementById('audio_play').play(); return false;">																										<!-- collegamenti ipertestuali perché è brutto. Dopo none ti fa apparire testo dove cliccare. <a> è testo chiusura. Spazio è ok. valign top sposta testo in alto, middle in mezzo, e bottom. src sta per search -->  
-  </td>
-<td background = "https://st4.depositphotos.com/1004061/29529/i/450/depositphotos_295297792-stock-photo-close-view-mechanism-gears-cogs.jpg" bgcolor="lightgrey" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">												                                                                                                                                                                                                                                                                                                 <!-- sotto  c'è barra di ricerca (non posso mettere commento in riga sotto), è codice javascript (che iniziano con <script>) insieme credo a CSS (che ha graffe {})(CSS dovrebbe essere + relativo a grafica?). blockquote distsanza fissa di 1 cm -->
-	
-	<p style="text-align:center;"><iframe width="360" src="https://www.youtube.com/embed/3N-iloXrN7k" title="LEGO TECHNIC 42143 Ferrari Daytona SP3 Speed Build for Collecrors - Brick Builder" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>		                                                                                      <!-- testo copiato cliccando su tasto destro video youtube, copia codice per incorporamento; poi aggiustato width e tolto height perché voiene aggiustata in proporzione in automatico. ogni volta che cambi youtube devi copiare codice per incorporamento da youtube cliccando tasto destro -->
-		
-</td>																																                                                                                                                                                                                                                                                                                                                                                                 <!-- colonna della separazione. Chiudere td, serve sbarra / di chiusura. Posso cambiare colore, o white e scompare -->	
-<td id=cella1 background = "https://www.aranzulla.it/wp-content/contenuti/2021/05/fe4e14b.jpg" valign="top" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400"><br><p align="center"><font face="Arial" size="6" color="black"><a href="http://www.html.it" style="text-decoration: none" onClick="alert('Sta per essere aperta una nuova finestra verso html.it');" target="_blank"><font class="neonText"><font color="navy" ><br><b>H.T.M.L.it </b><font color="darkorange">tutorial</font></a></font>								<!-- per qualche motivo se metto classe neontext e voglio però che colori navy e darkorange rimangano, devo aprire un font separato, sennò sovrascrive a nero; basterebbe togliere color black da css di neontext. rifatte tutte le formattazioni (ritorna a sx), scrivo table border... qualche riga sopra, chiudo tab sopra con <table> , e -->
-<br><input type="button" name="bottone" onClick="alert('Hello world!\nGrazie per aver visitato il sito!')" value="Ringraziamento">																																																								                                                                                                                                                                                             <!-- javascript per bottone (rende sito dinamico). Per lista si usa <ul> e <li></li> </ul>. text decoration none sopra ha tolto la sottolineatura da html.it che compariva -->
-<input type=button value= "Cella Arancio"onclick="cella1.bgColor='wheat'">
-
-<input type=button value= "Cella Gialla"onclick="cella1.bgColor='lemonchiffon'">																												
-
-
-
-<br><br></td>																																																															                                      <!-- scrivo solo <center> sempre sopra, e ricopio p align center arial 6 ecc. da sopra -->
-</tr>  </div>
-</table>
-
-<hr size="3" color="white" width="1200">
-
-<!-- parte mappa-->
-
-<div align="center" valign="middle">
-  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="1200" height="190">
-    <tr>
-    <td class="np-logo" background="stock-photo-blue-yellow-background-geometric-pattern.jpg" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="600">
-      <div style="border:15px solid lemonchiffon;padding:15px 15px 15px 15px">	
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.4029279030747!2d10.394408315724627!3d43.72295585593484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d591a6c44e88cd%3A0x32eca9b1d554fc03!2sTorre%20di%20Pisa!5e0!3m2!1sit!2sit!4v1672931443128!5m2!1sit!2sit" width="538" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div></div>
-    </td>
-    
-    <td style="background-image:url(https://cdn.create.vista.com/api/media/medium/285973762/stock-photo-cropped-view-woman-holding-microphone?token=);background-repeat:no-repeat;background-size:600px 210px;   width: 600px; height: 210px;" valign="top" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
-
-      <p style="text-align:center;">
-      <div class="container" align="center" valign="middle">
-        <br><font face="Arial" size="5" color="navy" class="neonText"><b>Registrazione vocale scaricabile</b></font><br>
-        <audio id="recorder" muted hidden></audio>
-        <div align="center">
-          <button id="start">Record</button>
-          <button id="stop">Stop Recording</button>
+          <div class="field">
+            <div class="emoji">🔊</div>
+            <div>
+                <div class="label">Accento: <span class="value"><b>Pisano - livornese</b> (nativo)</span></div>
+            </div>
+          </div>
         </div>
-        <div align="center">
-        <br><br>
-        <audio id="player" controls></audio></p></div>
-      </div>
 
-      
-  
-<script>
+        <div class="card fade-in" style="animation-delay:80ms">
+          <div class="field">
+            <div class="emoji">💼</div>
+            <div>
+                <div class="label">Attività: <span class="value"><b>Ingegnere informatico, consulente</b></span></div>
+            </div>
+          </div>
 
-class VoiceRecorder {
-	constructor() {
-		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-			console.log("getUserMedia supported")
-		} else {
-			console.log("getUserMedia is not supported on your browser!")
-		}
+          <div class="field">
+            <div class="emoji">🎙️</div>
+            <div>
+                <div class="label">Podcast: <span class="value"><b>Fitness e nutrizione su Spotify, Amazon Music, Apple Music</b></span></div>
+            </div>
+          </div>
 
-		this.mediaRecorder
-		this.stream
-		this.chunks = []
-		this.isRecording = false
+          <div class="field">
+            <div class="emoji">📚</div>
+            <div>
+                <div class="label">Libro: <span class="value"><b>Raccolta di materie scolastiche e universitarie </b>(eBook, cartaceo) <b>su Amazon</b></span></div>
+            </div>
+          </div>
 
-		this.recorderRef = document.querySelector("#recorder")
-		this.playerRef = document.querySelector("#player")
-		this.startRef = document.querySelector("#start")
-		this.stopRef = document.querySelector("#stop")
-		
-		this.startRef.onclick = this.startRecording.bind(this)
-		this.stopRef.onclick = this.stopRecording.bind(this)
+          <div class="field">
+            <div class="emoji">📱</div>
+            <div>
+                <div class="label">App: <span class="value"><b>App di numismatica e collezionismo sull'App Store </b>(iPhone, iPad)</span></div>
+            </div>
+          </div>
+        </div>
 
-		this.constraints = {
-			audio: true,
-			video: false
-		}
-		
-	}
+        <div class="card fade-in" style="animation-delay:160ms">
+          <div class="field">
+            <div class="emoji">✨</div>
+            <div>
+              <div class="label">Hobby:</div>
+              <div class="value">
+                <div class="list-vertical">
+                  <div class="item"><span>🎤</span><span><b>Canto moderno </b>(formazione classica)</span></div>
+                  <div class="item"><span>📸</span><span><b>Fotografia </b>(portfolio su IG)</span></div>
+                  <div class="item"><span>🖥️</span><span><b>Elaborazione digitale</span></div>
+                  <div class="item"><span>🎹</span><span>Piano</span></div>
+                  <div class="item"><span>🧑‍💻</span><span>Web design</span></div>
+                </div>
+              </b></div>
+            </div>
+          </div>
 
-	handleSuccess(stream) {
-		this.stream = stream
-		this.stream.oninactive = () => {
-			console.log("Stream ended!")
-		};
-		this.recorderRef.srcObject = this.stream
-		this.mediaRecorder = new MediaRecorder(this.stream)
-		console.log(this.mediaRecorder)
-		this.mediaRecorder.ondataavailable = this.onMediaRecorderDataAvailable.bind(this)
-		this.mediaRecorder.onstop = this.onMediaRecorderStop.bind(this)
-		this.recorderRef.play()
-		this.mediaRecorder.start()
-	}
+          <div class="field">
+            <div class="emoji">⚡</div>
+            <div>
+              <div class="label">Sport:</div>
+              <div class="value"><b>
+                <div class="list-vertical">
+                  <div class="item"><span>🏋️‍♂️</span><span>Sollevamento pesi</span></div>
+                  <div class="item"><span>🤸‍♂️</span><span>Flexibility</span></div>
+                  <div class="item"><span>🧘</span><span>Yoga</span></div>
+                  <div class="item"><span>🤸</span><span>Pilates</span></div>
+                  <div class="item"><span>💆</span><span>Rilascio miofasciale</span></div>
+                  <div class="item"><span>🏊</span><span>Nuoto</span></div>
+                  <div class="item"><span>🏀</span><span>Pallacanestro</span></div>
+                </div>
+              </b></div>
+            </div>
+          </div>
 
-	handleError(error) {
-		console.log("navigator.getUserMedia error: ", error)
-	}
-	
-	onMediaRecorderDataAvailable(e) { this.chunks.push(e.data) }
-	
-	onMediaRecorderStop(e) { 
-			const blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' })
-			const audioURL = window.URL.createObjectURL(blob)
-			this.playerRef.src = audioURL
-			this.chunks = []
-			this.stream.getAudioTracks().forEach(track => track.stop())
-			this.stream = null
-	}
+          <div class="field">
+            <div class="emoji">🏅</div>
+            <div>
+                <div class="label">Formazione sportiva: <span class="value"><b>Tennis, salto in alto, corsa campestre</b> (avanzato), <b>taekwondo, calcetto, pallavolo, ginnastica artistica, pugilato, tennistavolo, badminton</b> (base)</span></div>
+            </div>
+          </div>
+        </div>
 
-	startRecording() {
-		if (this.isRecording) return
-		this.isRecording = true
-		this.startRef.innerHTML = 'Recording...'
-		this.playerRef.src = ''
-		navigator.mediaDevices
-			.getUserMedia(this.constraints)
-			.then(this.handleSuccess.bind(this))
-			.catch(this.handleError.bind(this))
-	}
-	
-	stopRecording() {
-		if (!this.isRecording) return
-		this.isRecording = false
-		this.startRef.innerHTML = 'Record'
-		this.recorderRef.pause()
-		this.mediaRecorder.stop()
-	}
-	
-}
+        <div class="card fade-in" style="animation-delay:240ms">
+          <div class="field">
+            <div class="emoji">💻</div>
+            <div>
+                <div class="label">App su GitHub: <span class="value"><b>
+                Store di e-Commerce<br>
+                Microsoft Car Sharing<br>
+                Riconoscimento testi / immagini con AI<br>
+                Sentiment Analysis<br>
+                Domotica Internet of Things<br>
+                Sport Stats
+                </b></span></div>
+            </div>
+          </div>
 
-window.voiceRecorder = new VoiceRecorder()
+          <div class="field">
+            <div class="emoji">🚗</div>
+            <div>
+                <div class="label">Patente: <span class="value"><b>Automobile</b></span></div>
+            </div>
+          </div>
+        </div>
 
-      </script>
+      </section>
 
-    </td></tr>
-  </table>	
- 
+      <!-- foto e social, su mobile stanno a destra -->
+      <aside class="right">
+        <div class="photo-wrap">
+          <!-- cornice interna -->
+          <div class="photo-frame fade-in" style="animation-delay:80ms"><img class="profile-photo" src="fotomia.jpeg" alt="Foto di Claudio Menichini"></div>
 
+          <!-- social -->
+          <div class="socials fade-in" style="animation-delay:160ms">
+            <a class="insta" href="https://www.instagram.com/claudiomenichini/" title="Instagram" aria-label="Instagram">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Instagram_logo_2022.svg" alt="Instagram">
+            </a>
+            <a class="linkedin" href="https://www.linkedin.com/in/claudio-menichini-232383253/" title="LinkedIn" aria-label="LinkedIn">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon.svg" alt="LinkedIn">
+            </a>
+            <a class="github" href="https://github.com/cla1994" title="GitHub" aria-label="GitHub">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Octicons-mark-github.svg" alt="GitHub">
+            </a>
+          </div>
 
-<hr size="3" color="white" width="1200">
+          <br>
+          <!-- immagini -->
+          <div class="media-list fade-in" style="animation-delay:320ms">
+            <div class="media-item">
+              <img src="olivi.jpg" alt="Media 1">
+            </div>
+            <div class="media-item">
+              <img src="eco.PNG" alt="Media 2">
+            </div>
+          </div>
 
-<!-- parte in fondo-->
+        </div>
+      </aside>
 
-<div align="center" valign="middle">
-  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#FFFFFF" width="1200" height="190">
-  <tr>
-  <td class="np-logo" background="stock-photo-blue-yellow-background-geometric-pattern.jpg" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">
-  <blockquote><blockquote><br><h2><font face="Verdana" class="neonText">Il tuo nome per il <font class="disco" color="grey">BENVENUTO?</h2></font><br>
-        
-  <input id="name" type="text" style="font-size : 20px;">
-  <button class="button1" type="button" onclick="EnterName()" style="height:30px;width:150px" padding="2px"><h2>Clicca qui</h2></button>
-  <p style="color:white"id="demo">
-  
-  
+    </main>
+
+    <div style="height:12px"></div>
+  </div>
+
   <script>
-    function EnterName()
-    {
-      var x= document.getElementById("name").value;
-        if (x =="")	{
-          alert("Scrivi il tuo nome prima!") ;
-        }
-        else	{
-        alert("Benvenuto al mio sito, "+ x +"!") ;
-        }	
-    }
+    // delay del fade
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const all = Array.from(document.querySelectorAll('.fade-in'));
+      all.forEach((el,i)=>{
+        const delay = (i * 80) + 20;
+        el.style.animationDelay = delay + 'ms';
+      });
+    });
   </script>
-  
-  </td>
-
-  <td background="stock-photo-blue-yellow-background-geometric-pattern.jpg" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">		                                                              <!-- tabella, tr in orizzonale. FFFFFF bianco (sfondo)(anche ghostwhite), vanno -->
-    <blockquote>
-  
-      <p style="text-align:center;"><font face="Arial" size="5" color="wheat" class="googleText"><b>Cerca con Google</b></font></p><br>
-      
-      <blockquote>
-      <form action="http://www.google.com/search" method="get">                                                                                                                                                                         <!-- get mette tua ricerca in barra indirizzi, post invece lo terrebbe nascosto -->
-        <input type="text" name="q"/>
-        <input type="submit" value="Cerca" />
-    </form>
-  </td>
-  
-  <td bgcolor="#f2d44e" valign="middle" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" width="400">													                                                                      <!-- h1 per ingrandire il font -->
-  <blockquote><h2><div id="paragrafo"><br><font face="Verdana" class="neonText">Primi n numeri sequenza <font class="disco">FIBONACCI</font></div><hr>                               	<!-- se vuoi rimettere testo ballerino modifica css sopra e al posto di discos metti disco -->
-  <input type text="text" id="txtloop" />
-          <input type="button" id="btnEnter" value="Digita un numero" onclick="fibonacci_series(txtloop.value)" />
-  
-          <p id="output"></p>
-  <p id="demo"></p>
-  
-  <script>
-  var fibonacci_series = function (n) 
-  {
-    if (n==0) {
-    document.getElementById("output").innerHTML ="Zero = zero";
-    }
-    else if (n==1) {
-    document.getElementById("output").innerHTML =0;
-    } else if (n==2) 
-    
-    {
-  var loop = [0, 1];
-     document.getElementById("output").innerHTML = loop;
-    return loop;
-    } 
-    else 
-    {
-      var s = fibonacci_series(n - 1);
-      s.push(s[s.length - 1] + s[s.length - 2]);
-      document.getElementById("output").innerHTML =s;
-      return s;
-    }
-     
-  };
-  
-  </script>
-  </h1>
-  
-  </td>
-  </tr>  </div>
-  
-  </table>
-
-</div>
-</body>																																					<!-- ultime righe chiusura obbligatoria -->
+</body>
 </html>
-
-
-
-
