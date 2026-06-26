@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Sito ufficiale di Claudio Menichini. Ingegnere informatico, autore di podcast su fitness e nutrizione, sviluppatore di applicazioni e appassionato di canto e fotografia." />
+  <meta name="author" content="Claudio Menichini" />
+  <meta name="robots" content="index, follow" />
+  <title>Claudio Menichini | Ingegnere Informatico e Fitness Podcaster</title>
+  <style>
+    :root{
+      --bg-image: url('sfondo1.jpg'); 
+      --accent: #1B3A4B;
+      --card-bg: #ffffff;
+      --text: #111;
+      --radius: 14px;
+      --max-width: 1100px;
+      --gap: 18px;
+      --fade-time: 600ms;
+      --petrol: #07575b; 
+    }
+    *{box-sizing:border-box}
+    html, body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+    }
+    body{
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 32px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; 
+      min-height: 100vh;       
+    }
+    .site{
+      width:100%;max-width:var(--max-width);backdrop-filter: blur(6px); /* sfumatura */
+    }
+    header{
+      color:white;
+      padding:28px 18px;
+      text-align:left;
+    }
+    header h1{margin:0;font-size:2.1rem;letter-spacing:0.6px}
+    .main{
+      display:flex;flex-direction:column;gap:var(--gap);
+      align-items:stretch;padding:8px;
+    }
+    /* due colonne affiancate su desktop */
+    @media(min-width:900px){
+      .main{flex-direction:row;align-items:flex-start}
+      .left{flex:1;margin-right:20px}
+      .right{width:380px;flex:0 0 380px}
+    }
+    .card{
+      background: var(--card-bg);
+      border-radius:var(--radius);
+      padding:14px 18px;
+      box-shadow:0 6px 18px rgba(16,24,40,0.06);
+    }
+    .field{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;margin-bottom:10px;}
+    .label{min-width:140px;font-weight:600;color:var(--accent)}
+    .emoji{font-size:1.25rem;line-height:1}
+    .value{flex:1;color:#000;}
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 22px; 
+    }
+    /* photo frame */
+    .profile-photo{width:240px;max-width:100%;height:auto;border-radius:12px;object-fit:cover;display:block}
+    .photo-frame{display:inline-block;line-height:0;margin-bottom:8px;position:relative;overflow:hidden}
+    /* bordo interno */
+    .photo-frame::after{content:"";position:absolute;left:12px;top:12px;right:12px;bottom:12px;border-radius:8px;border:2px solid var(--petrol);pointer-events:none}
+    .photo-frame img{display:block;border-radius:12px;width:100%;height:auto}
+    /* immagini da wikimedia */
+    .photo-wrap{display:flex;flex-direction:column;gap:6px;align-items:center}
+    .socials{display:flex;gap:12px;margin-top:10px;justify-content:center}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;text-decoration:none;overflow:hidden}
+    .socials img{width:100%;height:100%;object-fit:contain;display:block}
+    /* metto il logo di github chiaro sennò non si vede */
+    .socials a.github img {
+      filter: invert(1) grayscale(1) contrast(1);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* ingrandisce su desktop */
+    @media(min-width:900px){
+      .socials a{width:52px;height:52px;border-radius:12px}
+    }
+    .media-list{display:flex;flex-direction:column;gap:12px}
+    .media-item{border-radius:10px;overflow:hidden}
+    .media-item img,.media-item iframe{width:100%;height:220px;display:block}
+    /* Fade */
+    .fade-in{opacity:0;transform:translateY(6px);animation:fadeIn var(--fade-time) ease forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+    /* mobile */
+    @media(max-width:899px){
+      header h1{font-size:1.6rem;text-align:center}
+      .card{width:100%}
+      .label{min-width:0;font-weight:700}
+      .field{flex-direction:row}
+      .profile-photo{border-radius:12px;width:92%}
+      .media-item img,.media-item iframe{height:180px}
+    }
+    .muted{color:#666;font-size:0.95rem}
+    .small{font-size:0.92rem}
+    .spacer{height:6px}
+    /* liste */
+    .list-vertical{display:flex;flex-direction:column;gap:6px}
+    .list-vertical .item{display:flex;gap:8px;align-items:center}
+    /* strisce diagonali */
+    :root { --stripe-rgb: 20,20,20; } /* nero */
+    .site {
+      position: relative;    
+      z-index: 1;           
+      border-radius: var(--radius);
+      overflow: visible;     
+    }
+    .site::before {
+      content: "";
+      position: absolute;
+      inset: 0;                   
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;                
+      background: repeating-linear-gradient(
+        225deg,                          
+        rgba(var(--stripe-rgb), 0.38) 0px,
+        rgba(var(--stripe-rgb), 0.38) 2px,
+        transparent 2px,
+        transparent 8px                   /* distanza tra righe */
+      );
+    }
+    /* sopra il layer */
+    .site > * { position: relative; z-index: 1; }
+    .card { background: rgba(255,255,255,0.92); }
+/* Pulsanti azioni (aggiungi) */
+.actions { margin-top:8px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.actions.two .btn { padding:8px 12px; font-size:14px; }
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:10px;
+  background: var(--petrol);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(7,87,91,0.12);
+  transition: transform .08s ease, box-shadow .08s ease;
+  font-weight:600;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(7,87,91,0.14); }
+.btn.outline {
+  background: transparent;
+  color: var(--petrol);
+  border: 1px solid rgba(7,87,91,0.12);
+  box-shadow: none;
+}
+.btn.store { background: linear-gradient(180deg, var(--petrol), #053a3a); }
+/* piccolo adattamento mobile */
+@media (max-width:560px){
+  .actions { width:100%; }
+  .actions .btn { flex: 1 1 auto; justify-content:center; }
+}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <h1 id="name" style="color:white">CLAUDIO MENICHINI</h1>
+    </header>
+    <main class="main">
+      <!-- su mobile è primo blocco, su desktop a sinistra -->
+      <section class="left">
+        <!-- prima della 4 card -->
+        <div class="card fade-in" style="animation-delay:0ms">
+          <div class="field">
+            <div class="emoji">🎂</div>
+            <div>
+                <div class="label">Nato a <span class="value"><b>Pisa</b> nel<b> 1994</b></span></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">🏠</div>
+            <div>
+                <div class="label">Residenza: <span class="value"><b>Pisa / Calambrone </b>(Toscana)</span></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">📏</div>
+            <div>
+                <div class="label">Altezza: <span class="value"><b>192 cm</b></span></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">🗣️</div>
+            <div>
+                <div class="label">Dialetto: <span class="value"><b>Pisano - livornese</b> (nativo)</span></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">🔊</div>
+            <div>
+                <div class="label">Accento: <span class="value"><b>Pisano - livornese</b> (nativo)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card fade-in" style="animation-delay:80ms">
+          <div class="field">
+            <div class="emoji">💼</div>
+            <div>
+                <div class="label">Attività: <span class="value"><b>Ingegnere informatico</b></span></div>
+            </div>
+          </div>
+<!-- Podcast -->
+<div class="field">
+  <div class="emoji">🎙️</div>
+  <div>
+    <div class="label">Podcast: <span class="value"><b>Fitness e nutrizione su Spotify, Amazon Music, Apple Music</b></span></div>
+    <div class="actions">
+      <a class="btn" href="https://open.spotify.com/show/1XB5QKiC7md53X0EZs6C4I" target="_blank" rel="noopener noreferrer" aria-label="Vai alla pagina del podcast">Ascolta / Link</a>
+    </div>
+  </div>
+</div>
+<!-- Libro -->
+<div class="field">
+  <div class="emoji">📚</div>
+  <div>
+    <div class="label">Libro: <span class="value"><b>Raccolta di materie scolastiche e universitarie</b> (eBook, cartaceo) <b>su Amazon</b></span></div>
+    <div class="actions">
+      <a class="btn outline" href="https://www.amazon.it/Compendio-cultura-generale-sintetica-argomenti/dp/B0FZFDH3PB" target="_blank" rel="noopener noreferrer" aria-label="Vedi il libro su Amazon">Vedi su Amazon</a>
+    </div>
+  </div>
+</div>
+<!-- App (due link) -->
+<div class="field">
+  <div class="emoji">📱</div>
+  <div>
+    <div class="label">App: <span class="value"><b>App di numismatica e collezionismo</b> (iPhone, iPad)</span></div>
+    <div class="actions two">
+      <a class="btn store" href="https://apps.apple.com/by/app/my-personal-coin-collection/id6443976119" target="_blank" rel="noopener noreferrer" aria-label="Scarica su App Store (iOS)">Coin Collection</a>
+      <a class="btn store" href="https://apps.apple.com/it/app/favorite-collections/id1671512128" target="_blank" rel="noopener noreferrer" aria-label="Scarica su App Store (iOS)">Favorite Collections</a>
+    </div>
+  </div>
+</div>
+        <div class="card fade-in" style="animation-delay:160ms">
+          <div class="field">
+            <div class="emoji">✨</div>
+            <div>
+              <div class="label">Hobby:</div>
+              <div class="value">
+                <div class="list-vertical">
+                  <div class="item"><span>🎤</span><span><b>Canto moderno </b>(formazione classica)</span></div>
+                  <div class="item"><span>📸</span><span><b>Fotografia </b>(portfolio su IG)</span></div>
+                  <div class="item"><span>🖥️</span><span><b>Elaborazione digitale</span></div>
+                  <div class="item"><span>🎹</span><span>Piano</span></div>
+                  <div class="item"><span>🧑‍💻</span><span>Web design</span></div>
+                </div>
+              </b></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">⚡</div>
+            <div>
+              <div class="label">Sport:</div>
+              <div class="value"><b>
+                <div class="list-vertical">
+                  <div class="item"><span>🏋️‍♂️</span><span>Sollevamento pesi</span></div>
+                  <div class="item"><span>🏊‍♂️</span><span>Nuoto</span></div>
+                  <div class="item"><span>🥋</span><span>Wing Chun (autodifesa)</span></div>
+                  <div class="item"><span>🏃‍♂️</span><span>Corsa</span></div>
+                  <div class="item"><span>🧘‍♂️</span><span>Yoga</span></div>
+                  <div class="item"><span>🤸‍♀️</span><span>Pilates</span></div>
+                  <div class="item"><span>⚖️</span><span>Biobalance</span></div>
+                  <div class="item"><span>🤸‍♂️</span><span>Flexibility</span></div>
+                  <div class="item"><span>⚫</span><span>Rilascio miofasciale</span></div>
+                </div>
+              </b></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">🏅</div>
+            <div>
+                <div class="label">Formazione sportiva: <span class="value"><b>Tennis, salto in alto, corsa campestre</b> (avanzato), <b>taekwondo, calcetto, pallavolo, basket, ginnastica artistica, pugilato, tennistavolo, badminton</b> (base)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card fade-in" style="animation-delay:240ms">
+          <div class="field">
+            <div class="emoji">💻</div>
+            <div>
+                <div class="label">App su GitHub: <span class="value"><b>
+                Store di e-Commerce<br>
+                Microsoft Car Sharing<br>
+                Riconoscimento testi / immagini con AI<br>
+                Sentiment Analysis<br>
+                Domotica Internet of Things<br>
+                Sport Stats
+                </b></span></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="emoji">🚗</div>
+            <div>
+                <div class="label">Patente: <span class="value"><b>Automobile</b></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- foto e social, su mobile stanno a destra -->
+      <aside class="right">
+        <div class="photo-wrap">
+          <!-- cornice interna -->
+          <div class="photo-frame fade-in" style="animation-delay:80ms"><img class="profile-photo" src="fotomia.jpeg" alt="Foto di Claudio Menichini"></div>
+          <!-- social -->
+          <div class="socials fade-in" style="animation-delay:160ms">
+            <a class="insta" href="https://www.instagram.com/claudiomenichini/" title="Instagram" aria-label="Instagram">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Instagram_logo_2022.svg" alt="Instagram">
+            </a>
+            <a class="linkedin" href="https://www.linkedin.com/in/claudio-menichini-232383253/" title="LinkedIn" aria-label="LinkedIn">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/LinkedIn_icon.svg" alt="LinkedIn">
+            </a>
+            <a class="github" href="https://github.com/cla1994" title="GitHub" aria-label="GitHub">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Octicons-mark-github.svg" alt="GitHub">
+            </a>
+          </div>
+          <br>
+          <!-- immagini -->
+          <div class="media-list fade-in" style="animation-delay:320ms">
+            <div class="media-item">
+              <img src="eco.PNG" alt="Media 1">
+            </div>
+            <div class="media-item">
+              <img src="ritratto.jpg" alt="Media 2">
+            </div>
+            <div class="media-item">
+              <img src="olivi.jpg" alt="Media 3">
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <div style="height:12px"></div>
+  </div>
+  <script>
+    // delay del fade
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const all = Array.from(document.querySelectorAll('.fade-in'));
+      all.forEach((el,i)=>{
+        const delay = (i * 80) + 20;
+        el.style.animationDelay = delay + 'ms';
+      });
+    });
+  </script>
+</body>
+</html>
+
+
